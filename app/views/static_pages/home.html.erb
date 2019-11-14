@@ -1,3 +1,12 @@
 <h1>Odin Photostream</h1>
 
 <%= render "search_form" %>
+
+<% if @photos %>
+  <% @photos.each do |photo| %>
+    <% info = flickr.photos.getInfo(:photo_id => photo.id) %>
+    <%= link_to FlickRaw.url_o(info) do %>
+      <%= image_tag(FlickRaw.url_z(info)) %>
+    <% end %>
+  <% end %>
+<% end %>
